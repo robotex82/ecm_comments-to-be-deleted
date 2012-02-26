@@ -57,7 +57,6 @@ ActiveAdmin.register Ecm::Comments::Comment do
   end
   
   index :title => Ecm::Comments::Comment.human_name(:count => Ecm::Comments::Comment.count) do
-    column :id
     column :commentable
     column :fullname
     column :email
@@ -65,7 +64,6 @@ ActiveAdmin.register Ecm::Comments::Comment do
     column :content_length
     column :comment_state
     column :created_at
-    column :updated_at
     
     default_actions      
   end
