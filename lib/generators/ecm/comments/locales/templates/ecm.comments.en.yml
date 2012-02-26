@@ -1,0 +1,8 @@
+en:
+  ecm:
+    comments:
+      actions:
+        spam: "Mark as spam"
+        offensive: "Mark as offensive"
+        unspam: "Unmark as spam"
+        unoffensive: "Unmark as offensive"

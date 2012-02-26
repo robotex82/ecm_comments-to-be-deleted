@@ -1,6 +1,7 @@
 # Provide a simple gemspec so you can easily use your enginex
 # project in your rails apps through git.
 Gem::Specification.new do |s|
+  s.authors = "Roberto Vasquez Angel"
   s.name = "ecm_comments"
   s.summary = "Insert EcmComments summary."
   s.description = "Insert EcmComments description."

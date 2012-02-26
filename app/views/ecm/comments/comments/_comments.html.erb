@@ -1,0 +1,10 @@
+<div class="<%= commentable.class.to_s.underscore %>-comments">
+  <h2><%= Ecm::Comments::Comment.human_name(:count => commentable.comments.count)  %> (<%= commentable.comments.count %>)</h2>
+  <%= render commentable.comments  %>
+</div>  
+
+
+<div class="<%= commentable.class.to_s.underscore %>-comments-form">
+  <h2><%= I18n.t('ecm.comments.comment.form_title') %></h2>
+  <%= render 'ecm/comments/comments/form', :commentable => commentable %>
+</div>  

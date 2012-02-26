@@ -1,2 +1,1 @@
-module EcmComments
-end
+require 'ecm/comments'

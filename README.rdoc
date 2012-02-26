@@ -1,3 +1,55 @@
 = EcmComments
 
 This project rocks and uses MIT-LICENSE.
+
+= Usage
+
+If you want to comment your posts, add following route:
+
+```ruby
+  resources :posts do
+    resources :comments, :only => [:create], :controller => "PostComments"
+  end
+```
+
+Add a PostCommentsController (app/controllers/post_comments_controller.rb)
+
+```ruby
+class PostCommentsController < ApplicationController
+  before_filter :find_post
+  
+  def create
+    @comment = @post.comments.new(params[:ecm_comments_comment])
+    @comment.ip_address = request.remote_ip
+    
+    respond_to do |format|
+      if @comment.automatic_spam? or @comment.save
+        format.html { redirect_to(@post, :notice => I18n.t('activemodel.notices.created', :model => @comment.class.to_s.constantize.human_name)) }
+        format.xml  { render :xml => @post, :status => :created, :location => @post }
+      else
+        format.html { render "posts/show" }
+        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
+      end
+    end  
+  end
+  
+  private
+  
+  def find_post
+    @post = Post.find(params[:post_id])
+  end  
+end
+```
+
+Add follwing lines to your posts#show action:
+
+```ruby
+@comment = @post.comments.new(params[:ecm_comments_comment])
+```
+
+
+Add following lines to your posts/show.html.erb view template:
+
+```ruby
+<%= render 'ecm/comments/comments/comments', :commentable => @post %>
+```

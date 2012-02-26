@@ -1,0 +1,35 @@
+<%= form_for([commentable, @comment], :url => send("#{commentable.class.to_s.underscore}_comments_path".to_sym, commentable), :html => { :class => :inline }) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activemodel.errors.template.header.other', :model => @comment.class.model_name.human, :count => @comment.errors.count) %></h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :commentable_type %> 
+  <%= f.hidden_field :commentable_id %> 
+  
+  <div class="field" style="display: none;">
+    <%= f.label :nickname %><%= f.text_field :nickname %>
+  </div>
+  <div class="field">
+    <%= f.label :fullname %><%= f.text_field :fullname %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :homepage %><%= f.text_field :homepage %>
+  </div>
+  <div class="field">
+   <%= f.label :content %><%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
