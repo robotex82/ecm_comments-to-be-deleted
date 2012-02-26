@@ -61,7 +61,7 @@ de:
         unoffensive: "Keine Beleidigung"
       comment:
         comment_title: "<span class=\"comment-name\">%{name}</span> kommentierte am <span class=\"comment-created_at\">%{created_at}</span>"
-        form_title: "Neuen Kommentar erstellen:"
+        form_title: "Kommentieren:"
       replacements:
         offensive: "Dieser Kommentar wurde als Beleidigung markiert."
         spam: "Dieser Kommentar wurde als Spam markiert."

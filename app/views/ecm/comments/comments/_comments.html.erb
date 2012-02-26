@@ -1,5 +1,5 @@
 <div class="<%= commentable.class.to_s.underscore %>-comments">
-  <h2><%= Ecm::Comments::Comment.human_name(:count => commentable.comments.count)  %> (<%= commentable.comments.count %>)</h2>
+  <h2><%= Ecm::Comments::Comment.human_name(:count => 2)  %> (<%= commentable.comments.count %>)</h2>
   <%= render commentable.comments  %>
 </div>  
 
