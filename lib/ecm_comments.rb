@@ -1,1 +1,1 @@
-require 'ecm/comments'
+require 'ecm/comments/engine'

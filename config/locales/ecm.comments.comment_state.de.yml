@@ -1,0 +1,11 @@
+de:
+  activerecord:
+    attributes:
+      ecm/comments/comment_state:
+        comments_count: "Kommentare"
+        description: "Beschreibung"
+        identifier: "Bezeichner"
+    models:
+      ecm/comments/comment_state: 
+        one: "Kommentar Status"
+        other: "Kommentar Status"

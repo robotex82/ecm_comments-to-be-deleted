@@ -1,0 +1,35 @@
+de:
+  active_admin:
+    attributes_table:
+      title: "%{name} Details"
+    scopes:
+      all: "Alle"
+      spam: "Spam"
+      offensive: "Beleidigend"
+  activemodel:
+    notices:
+      created: "%{model} wurde erstellt."
+  attributes:
+    id: "Id"
+    created_at: "Erstellt"
+    updated_at: "Aktualisiert"
+  ecm:
+    comments:
+      actions:
+        spam: "Spam"
+        offensive: "Beleidigung"
+        unspam: "Kein Spam"
+        unoffensive: "Keine Beleidigung"
+      comment:
+        comment_title: "<span class=\"comment-name\">%{name}</span> kommentierte am <span class=\"comment-created_at\">%{created_at}</span>"
+        form_title: "Kommentieren:"
+      replacements:
+        offensive: "Dieser Kommentar wurde als Beleidigung markiert."
+        spam: "Dieser Kommentar wurde als Spam markiert."
+  formtastic:
+    :yes: 'Ja'
+    :no: 'Nein'
+    :create: '%{model} erstellen'
+    :update: '%{model} aktualisieren'
+    :submit: '%{model} speichern'
+    :required: 'benötigt'

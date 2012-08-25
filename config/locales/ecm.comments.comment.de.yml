@@ -1,0 +1,25 @@
+de:
+  activerecord:
+    attributes:
+      ecm/comments/comment:
+        commentable: "Kommentiertes Objekt"
+        content: "Text"
+        content_length: "Textlänge"
+        comment_state: "Status"
+        ecm_comments_comment_state: "Status"
+        email: "E-Mail"
+        fullname: "Name"
+        homepage: "Homepage"
+        ip_address: "Client IP Adresse"
+    errors:
+      models:
+        ecm:
+          comments:
+            comment:
+              attributes:
+                content:
+                  invalid_changed: "Darf nicht geändert werden"
+    models:
+      ecm/comments/comment:
+        one: "Kommentar"
+        other: "Kommentare"
