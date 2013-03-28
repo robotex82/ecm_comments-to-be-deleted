@@ -9,6 +9,10 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require
+require "activeadmin"
+require "less-rails"
+require "rails-i18n"
+require "twitter-bootstrap-rails"
 require "ecm_comments"
 
 module Dummy

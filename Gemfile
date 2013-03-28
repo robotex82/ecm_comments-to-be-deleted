@@ -22,6 +22,9 @@ gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 # Patched guard rails
 gem 'guard-rails',  :git => 'git://github.com/robotex82/guard-rails.git', :branch => 'better-engine-support'
 
+# Experimental unchanged validator
+gem "rails_tools-unchanged_validator", :path => "~/rails/modules/rails_tools-unchanged_validator-master"
+
 unless ENV['TRAVIS_RUBY_VERSION'].nil?
   gem 'pg'
   gem 'mysql2'

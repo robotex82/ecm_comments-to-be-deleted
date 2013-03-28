@@ -1,4 +1,6 @@
 <div class="<%= comment.commentable.class.to_s.underscore %>-comment" id="<%= comment.commentable.class.to_s.underscore %>-comment-<%= comment.id %>">
-  <p class="comment-title"><%= I18n.t('ecm.comments.comment.comment_title', :name => comment.fullname, :created_at => I18n.l(comment.created_at.in_time_zone)).html_safe  %>:</p>
+  <p class="comment-title"><%= I18n.t('ecm.comments.comment.comment_title', :name => comment.name, :created_at => I18n.l(comment.created_at.in_time_zone)).html_safe  %>:</p>
   <p class="comment-content"><%= comment_content_for_display(comment) %></p>
 </div>
+
+<hr />

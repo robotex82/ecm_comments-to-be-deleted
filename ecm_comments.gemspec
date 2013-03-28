@@ -17,10 +17,17 @@ Gem::Specification.new do |s|
 
   # Module dependencies
   s.add_dependency "rails", "~> 3.2.13"
+  # s.add_dependency "rails_tools-unchanged_validator"
+  s.add_dependency 'simple_form'
 
   # Dummy app
-  s.add_development_dependency 'sass-rails'
+  s.add_development_dependency "coffee-script"
+  s.add_development_dependency "less-rails"
+  s.add_development_dependency "rails-i18n"
+  s.add_development_dependency "sass-rails"
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "therubyracer"
+  s.add_development_dependency "twitter-bootstrap-rails"
 
   # Development Server
   s.add_development_dependency "thin"

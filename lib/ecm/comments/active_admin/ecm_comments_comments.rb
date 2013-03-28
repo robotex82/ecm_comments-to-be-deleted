@@ -47,7 +47,7 @@ ActiveAdmin.register Ecm::Comments::Comment do
   form do |f|
     f.inputs do
       f.input :ecm_comments_comment_state
-      f.input :fullname, :input_html => { :readonly => true, :class => :readonly }
+      f.input :name, :input_html => { :readonly => true, :class => :readonly }
       f.input :email, :input_html => { :readonly => true, :class => :readonly }
       f.input :homepage, :input_html => { :readonly => true, :class => :readonly }
       f.input :content, :input_html => { :readonly => true, :class => :readonly }
@@ -58,9 +58,13 @@ ActiveAdmin.register Ecm::Comments::Comment do
 
   index :title => Ecm::Comments::Comment.model_name.human(:count => Ecm::Comments::Comment.count) do
     column :commentable
-    column :fullname
-    column :email
-    column :homepage
+    column :name
+    column :email, :sortable => :email do |comment|
+      mail_to comment.email unless comment.email.blank?
+    end
+    column :homepage, :sortable => :homepage do |comment|
+        link_to comment.homepage, comment.homepage unless comment.homepage.blank?
+      end
     column :content_length
     column :comment_state
     column :created_at
@@ -71,14 +75,14 @@ ActiveAdmin.register Ecm::Comments::Comment do
   show do
     attributes_table do
       row :commentable
-      row :fullname
+      row :name
       row :email do |comment|
         mail_to comment.email unless comment.email.blank?
       end
       row :homepage do |comment|
         link_to comment.homepage, comment.homepage unless comment.homepage.blank?
       end
-      row :ip_address
+      row :client_ip
       row :comment_state
       row :created_at
       row :updated_at

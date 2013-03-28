@@ -1,35 +1,20 @@
-<%= form_for([commentable, @comment], :url => send("#{commentable.class.to_s.underscore}_comments_path".to_sym, commentable), :html => { :class => :inline }) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= t('activemodel.errors.template.header.other', :model => @comment.class.model_name.human, :count => @comment.errors.count) %></h2>
+<% @comment = Ecm::Comments::Comment.new(params[:ecm_comments_comment]) unless defined?(@comment) %>
+<% @commentable = commentable if defined?(commentable) %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for [@commentable, @comment],  :url => ecm_comments_comments_path, :html_class => 'well' do |f| %>
+  <%= f.hidden_field :commentable_type, :value => @commentable.class %> 
+  <%= f.hidden_field :commentable_id,   :value => @commentable.to_param %> 
+
+  <%= f.input :nickname, :input_html => { :style => 'display:none' }, :label_html => { :style => 'display:none' } %>
+  <%= f.input :name, :input_html => { :class => Ecm::Comments::Configuration.input_name_css_classes } %>
+  <%= f.input :email, :input_html => { :class => Ecm::Comments::Configuration.input_email_css_classes } %>
+  <%= f.input :homepage, :input_html => { :class => Ecm::Comments::Configuration.input_homepage_css_classes } %>
+  <%= f.input :content, :as => :text, :input_html => { :class => Ecm::Comments::Configuration.input_content_css_classes } %>
   
-  <%= f.hidden_field :commentable_type %> 
-  <%= f.hidden_field :commentable_id %> 
-  
-  <div class="field" style="display: none;">
-    <%= f.label :nickname %><%= f.text_field :nickname %>
-  </div>
-  <div class="field">
-    <%= f.label :fullname %><%= f.text_field :fullname %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :homepage %><%= f.text_field :homepage %>
-  </div>
-  <div class="field">
-   <%= f.label :content %><%= f.text_area :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="controls form-actions">
+    <%= button_tag(:type => 'submit', :class => 'input btn btn-primary', :id => 'ecm_comments_comment_submit') do %>
+      <i class="icon-ok"></i>
+      <%= t('helpers.submit.create', :model => f.object.class.model_name.human) %>
+    <% end %>
+  </div>  
 <% end %>

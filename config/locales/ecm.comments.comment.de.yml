@@ -8,9 +8,9 @@ de:
         comment_state: "Status"
         ecm_comments_comment_state: "Status"
         email: "E-Mail"
-        fullname: "Name"
+        name: "Name"
         homepage: "Homepage"
-        ip_address: "Client IP Adresse"
+        client_ip: "Client IP Adresse"
     errors:
       models:
         ecm:
@@ -23,3 +23,4 @@ de:
       ecm/comments/comment:
         one: "Kommentar"
         other: "Kommentare"
+

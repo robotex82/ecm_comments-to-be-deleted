@@ -1,4 +1,11 @@
 class CreateEcmCommentsCommentStates < ActiveRecord::Migration
+  def migrate(direction)
+    super
+
+    Ecm::Comments::CommentState.create!(:name => 'Spam', :identifier => 'spam') if direction == :up
+    Ecm::Comments::CommentState.create!(:name => 'Offensive', :identifier => 'offensive') if direction == :up    
+  end
+
   def change
     create_table :ecm_comments_comment_states do |t|
       t.string :name

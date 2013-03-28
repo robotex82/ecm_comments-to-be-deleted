@@ -9,7 +9,17 @@ module Ecm
         yield self
       end
 
-      # Copnfiguration options
+      mattr_accessor :input_name_css_classes
+      @@input_name_css_classes = nil
+
+      mattr_accessor :input_email_css_classes
+      @@input_email_css_classes = nil
+
+      mattr_accessor :input_homepage_css_classes
+      @@input_homepage_css_classes = nil
+
+      mattr_accessor :input_content_css_classes
+      @@input_content_css_classes = nil
     end
   end
 end

@@ -1,31 +1,48 @@
 module Ecm::Comments
   class Comment < ActiveRecord::Base
+    self.table_name = 'ecm_comments_comments'
+
+    # associations
     belongs_to :commentable, :polymorphic => true
     belongs_to :comment_state
 
-    attr_accessor :nickname
-    # alias :comment_state :ecm_comments_comment_state
+    # attributes
+    attr_accessor :nickname # virtual attribute for anti-spam
+    attr_accessible :commentable_type,
+                    :commentable_id,
+                    :nickname,
+                    :name,
+                    :homepage,
+                    :content,
+                    :email
 
+    # callbacks
+    before_create :not_automatic_spam?
+    before_create :format_homepage
+    before_save :set_content_length
+
+    # validations
     validates :commentable_type, :presence => true
     validates :commentable_id, :presence => true
-    validates :fullname, :presence => true
+    validates :name, :presence => true
     validates :email, :presence => true
     validates :content, :presence => true
-    validates :ip_address, :presence => true
+    validates :client_ip, :presence => true
 
     validates :commentable_type, :unchanged => true, :on => :update
     validates :commentable_id, :unchanged => true, :on => :update
-    validates :fullname, :unchanged => true, :on => :update
+    validates :name, :unchanged => true, :on => :update
     validates :email, :unchanged => true, :on => :update
     validates :content, :unchanged => true, :on => :update
-    validates :ip_address, :unchanged => true, :on => :update
+    validates :client_ip, :unchanged => true, :on => :update
 
     default_scope :order => 'created_at ASC'
 
-    before_create :not_automatic_spam?
-    before_save :update_content_length
+    def format_homepage
+      self.homepage = "http://#{self.homepage}" unless self.homepage[/^https?/]
+    end
 
-    def update_content_length
+    def set_content_length
       self.content_length = self.content.length
     end
 

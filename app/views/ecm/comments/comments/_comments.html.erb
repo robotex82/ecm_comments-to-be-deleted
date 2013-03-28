@@ -1,10 +1,12 @@
 <div class="<%= commentable.class.to_s.underscore %>-comments">
-  <h2><%= Ecm::Comments::Comment.human_name(:count => 2)  %> (<%= commentable.comments.count %>)</h2>
-  <%= render commentable.comments  %>
+  <h3><%= Ecm::Comments::Comment.model_name.human(:count => :other)  %> (<%= commentable.comments.count %>)</h3>
+  <% commentable.comments.each do |comment| %>
+    <%= render comment if comment.persisted?  %>
+  <% end %>
 </div>  
 
 
 <div class="<%= commentable.class.to_s.underscore %>-comments-form">
-  <h2><%= I18n.t('ecm.comments.comment.form_title') %></h2>
+  <h4><%= I18n.t('ecm.comments.comment.form_title') %></h4>
   <%= render 'ecm/comments/comments/form', :commentable => commentable %>
 </div>  

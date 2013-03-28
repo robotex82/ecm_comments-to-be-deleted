@@ -1,0 +1,37 @@
+<% @comment = Ecm::Comments::Comment.new(params[:ecm_comments_comment]) unless defined?(@comment) %>
+<% @commentable = commentable if defined?(commentable) %>
+<%= form_for([@commentable, @comment],  :url => ecm_comments_comments_path, :html => { :class => :inline }) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activemodel.errors.template.header.other', :model => @comment.class.model_name.human, :count => @comment.errors.count) %></h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.hidden_field :commentable_type, :value=> @commentable.class %> 
+  <%= f.hidden_field :commentable_id, :value=> @commentable.to_param %> 
+  
+  <div class="field" style="display: none;">
+    <%= f.label :nickname %><%= f.text_field :nickname %>
+  </div>
+  <div class="field">
+    <%= f.label :fullname %><%= f.text_field :fullname %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :homepage %><%= f.text_field :homepage %>
+  </div>
+  <div class="field">
+   <%= f.label :content %><%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
