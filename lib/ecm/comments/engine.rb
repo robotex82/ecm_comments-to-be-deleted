@@ -3,8 +3,8 @@ module Ecm
     class Engine < Rails::Engine
       config.to_prepare do
         ApplicationController.helper(Ecm::CommentsHelper)
-      end  
-      
+      end
+
       # active admin
       initializer :ecm_comments_engine do
         ::ActiveAdmin.setup do |active_admin_config|
@@ -12,5 +12,6 @@ module Ecm
         end
       end if defined?(::ActiveAdmin)
     end
-  end  
+  end
 end
+
